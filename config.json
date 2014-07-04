@@ -1,12 +1,15 @@
 {
+  "contents": "./contents",
+  "templates": "./templates",
   "locals": {
     "url": "http://localhost:8080",
-    "name": "The Wintersmith's blog",
-    "owner": "Someone",
-    "description": "Ramblings of an immor(t)al demigod"
+    "name": "imagineer.in",
+    "owner": "Praseetha KR",
+    "description": "coding with colors"
   },
   "plugins": [
-    "./plugins/paginator.coffee"
+    "./plugins/paginator.coffee",
+    "wintersmith-less"
   ],
   "require": {
     "moment": "moment",
