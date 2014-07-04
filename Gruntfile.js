@@ -26,16 +26,23 @@ module.exports = function(grunt) {
 		},
 		concurrent: {
 			target: {
-				tasks: ['wintersmith:preview', 'less'],
+				tasks: ['watch', 'wintersmith:preview'],
 				options: {
 					logCurrentOutput: true
 				}
+			}
+		},
+		watch: {
+			development: {
+				files: "./contents/assets/less/*",
+				tasks: ['less']
 			}
 		}
 	});
 	grunt.loadNpmTasks('grunt-wintersmith');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-concurrent');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	grunt.registerTask('production', ['wintersmith:production']);
 	grunt.registerTask('default', ['concurrent:target']);
