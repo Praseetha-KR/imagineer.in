@@ -1,5 +1,5 @@
 
-extends layout
+extends base
 
 block append vars
   - bodyclass = 'article-detail'
@@ -10,6 +10,7 @@ block prepend title
 block header
   include author
   h1= page.title
+  h2= page.metadata.date
   p.author
     | #{ "Written by " }
     mixin author(page.metadata.author)
