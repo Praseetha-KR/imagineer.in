@@ -37,9 +37,11 @@ html(lang='en')
                       if(item.title == page.title)
                         div.item.active
                           a(href=item.url)=item.title
+                          p=item.metadata.date
                       else
                         div.item
                           a(href=item.url)=item.title
+                          p=item.metadata.date
                 - }
         div.right
           block header
