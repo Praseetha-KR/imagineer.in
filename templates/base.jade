@@ -11,38 +11,25 @@ html(lang='en')
         block title
           = locals.name
       link(rel='alternate', href=locals.url+'/feed.xml', type='application/rss+xml', title=locals.description)
-      link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300')
+      link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300|PT+Sans:400,700,400italic|Lato:300,400,700,400italic')
+      link(rel='stylesheet', href='/assets/fonts/icomoon/style.css')
       link(rel='stylesheet', href='/assets/css/main.css')
       link(rel='stylesheet', href='/assets/css/app.css')
   body(class="bodyclass")
     div.two-pane-app
       div.top
-        p Praseetha KR  
-      div.bottom
         div.left
+          a(href="/")
+            span.logo
+              img(src="https://imgee.s3.amazonaws.com/imgee/8dc6b1deecef41308dc50275f59fc182_w29_h30.png")
+            span.site-title Praseetha KR
+          block sitenav
+        div.right
+          p.flushright navigation 
+      div.bottom
+        div.left.link-silent
           block sidebar
-            - var archives = _.chain(env.helpers.getArticles(contents)).groupBy(function(item) {
-            -  return item.date.getFullYear()
-            - }).value()
-            - for (var archive in archives) {
-            - archives[archive] = _.groupBy(archives[archive], function(item){return item.date.getMonth();})
-            - }
-            - var month_names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-            - var yearsK = _.chain(archives).keys().reverse().value()
-              - for(var year in yearsK)
-                - months = archives[yearsK[year]]
-                - var monthsK = _.chain(months).keys().reverse().value()
-                - for(month in monthsK){
-                    each item in months[monthsK[month]]
-                      if(item.title == page.title)
-                        div.item.active
-                          a(href=item.url)=item.title
-                          p=item.metadata.date
-                      else
-                        div.item
-                          a(href=item.url)=item.title
-                          p=item.metadata.date
-                - }
         div.right
           block header
           block content
+          block footer

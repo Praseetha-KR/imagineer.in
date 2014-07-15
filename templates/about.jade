@@ -1,0 +1,22 @@
+extends base
+
+block sidebar
+  div.item
+    a(href="https://twitter.com/void_imagineer") Twitter: @void_imagineer
+  div.item
+    a(href="https://github.com/Praseetha-KR") Github: Praseetha-KR
+block content
+  h1 Hola!
+  p Welcome to my weblog.
+
+block prepend footer
+  div.nav
+    if prevPage
+      a(href=prevPage.url) « Newer
+    else
+      a(href='/archive.html') « Archives
+    if nextPage
+      a(href=nextPage.url) Next page »
+
+
+

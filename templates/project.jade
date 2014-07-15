@@ -1,0 +1,36 @@
+
+extends base
+
+block append vars
+  - bodyclass = 'project-detail'
+
+block prepend title
+  | #{ page.title + " - "}
+
+block sitenav 
+  div.site-nav-icons.flushright
+    a(href='/articles/')
+      span.icon-book
+    a.active(href='/projects/')
+      span.icon-code
+    a(href='/creations/')
+      span.icon-feather
+block sidebar
+  div.item-header PROJECTS
+  - var archives = _.chain(env.helpers.getProjects(contents)).value()
+  for item in archives
+    div.item
+      a(href=item.url)=item.title
+
+block header
+  if page.metadata.masthead
+    div.masthead
+      img(src=page.metadata.masthead, alt=page.title)
+    br
+  h2= page.title
+  div.post-date
+    span= page.metadata.time
+block content
+  br
+  project.project
+    section.content!= typogr(page.html).typogrify()

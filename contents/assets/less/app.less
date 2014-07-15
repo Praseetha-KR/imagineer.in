@@ -7,6 +7,13 @@ html, body {
 	height: 100%;
 	overflow: hidden; 
 }
+.link-silent.a, .link-silent a{
+	text-decoration: none;
+}
+.flushright{
+	float: right;
+}
+
 
 .two-pane-app {
 	position: absolute;
@@ -23,10 +30,51 @@ html, body {
 .two-pane-app .top {
 	position: absolute;
 	height: 3.75em;
-	padding: 0.7em 1.2em;
+	/*padding: 0.7em 1.2em;*/
 	line-height: 2.5em;
 	width: 100%;
 	border-bottom: 0.0625em solid rgba(0, 0, 0, 0.1); 
+}
+.two-pane-app .top .left{
+	padding: 0.6em 0 0.6em 1em;
+	color: #FFFFFF;
+}
+.logo img{
+	border-radius: 50%;
+	overflow: hidden;
+	padding-top: 5px;
+}
+.two-pane-app .top .left span{
+	float: left;
+	padding-right: 15px;
+}
+.site-nav-icons{
+	padding-top: 0.65em;
+}
+.site-nav-icons a{
+	display: block;
+	float: left;
+
+}
+.site-nav-icons a span{
+	font-size: 20px;
+	color: #222536;
+}
+.site-nav-icons a.active span{
+	font-size: 20px;
+	color: #FFF;
+}
+.site-nav-icons a.active:after{
+	display: block;
+	position: relative;
+	bottom: -24px;
+	content: '';
+	height: 0;
+	width: 0;
+	border-top: 8px solid transparent;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-bottom: 8px solid #F8F8F8;
 }
 .two-pane-app .bottom {
 	position: absolute;
@@ -34,36 +82,47 @@ html, body {
 	bottom: 0;
 	width: 100%; 
 }
-.two-pane-app .bottom .left {
+.two-pane-app .left {
 	border-right: 0.0625em solid rgba(0, 0, 0, 0.1);
 	position: absolute;
 	width: 30%;
+	background-color: #F785BB;
+}
+.two-pane-app .bottom .left {
 	height: 100%;
 	overflow: auto; 
-	background-color: #222536;
+	background-color: #F8F8F8;
+	font-size: 14px;
+}
+.two-pane-app .bottom .left .item-header {
+	background: rgba(255,255,255,0.1);
+	color: #E0603D;
+	padding: 0.3em 1em;
 }
 .two-pane-app .bottom .left .item {
-	height: 4em;
 	border-bottom: 0.0625em solid rgba(0, 0, 0, 0.1);
 	cursor: pointer; 
+	padding: 1em;
 }
 .two-pane-app .bottom .left .item a {
-	color: #777A80;
+	color: #BBB;
 }
 .two-pane-app .bottom .left .item.active a {
 	color: #FFF;
 }
-.two-pane-app .bottom .left .item:hover {
+.two-pane-app .bottom .left .item:hover, .two-pane-app .bottom .left .item.active {
 	background: rgba(0, 0, 0, 0.1);
 	border-bottom: 0.0625em solid rgba(0, 0, 0, 0); 
 }
 .two-pane-app .bottom .left .item:last-child {
 	border-bottom: 0; 
 }
-.two-pane-app .bottom .right {
+.two-pane-app .right {
 	position: absolute;
 	width: 70%;
 	right: 0;
+}
+.two-pane-app .bottom .right {
 	height: 100%;
 	overflow: auto;
 	padding: 1.25em; 
@@ -99,7 +158,11 @@ html, body {
 	margin-right: 5px;
 	color: #ccc;
 }
-
+.left .post-date span{
+	color: #777A80;
+	font-size: 12px;
+	font-style: italic;
+}
 
 .video-wrapper {
   width: 80%;
@@ -124,4 +187,17 @@ html, body {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.text-center{
+	text-align: center;
+}
+.centered{
+	margin: 0 auto;
+}
+.circle{
+	border-radius: 50%;
+	overflow: hidden;
+	margin-top: 3em;
+	margin-bottom: 3em;
 }

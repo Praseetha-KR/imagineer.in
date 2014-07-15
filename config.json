@@ -7,6 +7,33 @@
     "owner": "Praseetha KR",
     "description": "coding with colors"
   },
+  "menu": [
+    {
+      "name": "Home",
+      "description": "Home page",
+      "url": "/"
+    },
+    {
+      "name": "Articles",
+      "description": "Weblog",
+      "url": "/articles"
+    },
+    {
+      "name": "Projects",
+      "description": "Coding with colors",
+      "url": "/projects"
+    },
+    {
+      "name": "Creations",
+      "description": "Art",
+      "url": "/creations"
+    },
+    {
+      "name": "About",
+      "description": "About me",
+      "url": "/about"
+    }
+  ],
   "plugins": [
     "./plugins/paginator.coffee",
     "wintersmith-less"

@@ -4,8 +4,9 @@ h1, h2, h3, h4, h5, h6, p, body, a, img, ul, ol, blockquote, pre {
 }
 
 body {
-  font-family: 'Lora', serif;
-  font-size: 21px;
+  font-family: 'Lato', 'PT Sans', 'Lora', serif;
+  /*font-size: 21px;*/
+  font-size: 16px;
   line-height: 1.52;
   background-color: #f8f8f8;
   text-rendering: optimizeLegibility;
@@ -30,7 +31,7 @@ p {
 }
 
 pre {
-  font-size: 0.9em;
+  font-size: 1em;
   overflow: auto;
   background: #fff;
   border: 1px dashed #d2d2d2;

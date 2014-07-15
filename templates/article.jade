@@ -7,12 +7,50 @@ block append vars
 block prepend title
   | #{ page.title + " - "}
 
+block sitenav 
+  div.site-nav-icons.flushright
+    a.active(href='/articles/')
+      span.icon-book
+    a(href='/projects/')
+      span.icon-code
+    a(href='/creations/')
+      span.icon-feather
+block sidebar
+  div.item-header ARTICLES
+  - var archives = _.chain(env.helpers.getArticles(contents)).groupBy(function(item) {
+  -  return item.date.getFullYear()
+  - }).value()
+  - for (var archive in archives) {
+  - archives[archive] = _.groupBy(archives[archive], function(item){return item.date.getMonth();})
+  - }
+  - var month_names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  - var yearsK = _.chain(archives).keys().reverse().value()
+    - for(var year in yearsK)
+      - months = archives[yearsK[year]]
+      - var monthsK = _.chain(months).keys().reverse().value()
+      - for(month in monthsK){
+          each item in months[monthsK[month]]
+            if(item.title == page.title)
+              div.item.active
+                a(href=item.url)=item.title
+                div.post-date
+                  span= item.metadata.date.getDate()
+                  span= month_names[item.metadata.date.getMonth()]
+                  span= item.metadata.date.getFullYear()
+            else
+              div.item
+                a(href=item.url)=item.title
+                div.post-date
+                  span= item.metadata.date.getDate()
+                  span= month_names[item.metadata.date.getMonth()]
+                  span= item.metadata.date.getFullYear()
+      - }
+
 block header
   if page.metadata.masthead
     div.masthead
       img(src=page.metadata.masthead, alt=page.title)
   h1= page.title
-  - var month_names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   div.post-date
     span= page.metadata.date.getDate()
     span= month_names[page.metadata.date.getMonth()]

@@ -6,6 +6,8 @@ module.exports = (env, callback) ->
   defaults =
     template: 'index.jade' # template that renders pages
     articles: 'articles' # directory containing contents to paginate
+    projects: 'projects'
+    creations: 'creations'
     first: 'index.html' # filename/url for first page
     filename: 'page/%d/index.html' # filename for rest of pages
     perPage: 2 # number of articles per page
@@ -24,6 +26,16 @@ module.exports = (env, callback) ->
     # sort article by date
     articles.sort (a, b) -> b.date - a.date
     return articles
+
+  getProjects = (contents) ->
+    projects = contents[options.projects]._.directories.map (item) -> item.index
+    projects = projects.filter (item) -> item.template isnt 'none'
+    return projects
+
+  getCreations = (contents) ->
+    creations = contents[options.creations]._.directories.map (item) -> item.index
+    creations = creations.filter (item) -> item.template isnt 'none'
+    return creations
 
   class PaginatorPage extends env.plugins.Page
     ### A page has a number and a list of articles ###
@@ -60,6 +72,8 @@ module.exports = (env, callback) ->
 
     # find all articles
     articles = getArticles contents
+    projects = getProjects contents
+    creations = getCreations contents
 
     # populate pages
     numPages = Math.ceil articles.length / options.perPage
@@ -67,6 +81,13 @@ module.exports = (env, callback) ->
     for i in [0...numPages]
       pageArticles = articles.slice i * options.perPage, (i + 1) * options.perPage
       pages.push new PaginatorPage i + 1, pageArticles
+
+    numCPages = Math.ceil creations.length / options.perPage
+    pages = []
+    for i in [0...numPages]
+      pageCreations = creations.slice i * options.perPage, (i + 1) * options.perPage
+      pages.push new PaginatorPage i + 1, pageCreations
+
 
     # add references to prev/next to each page
     for page, i in pages
@@ -86,6 +107,8 @@ module.exports = (env, callback) ->
 
   # add the article helper to the environment so we can use it later
   env.helpers.getArticles = getArticles
+  env.helpers.getProjects = getProjects
+  env.helpers.getCreations = getCreations
 
   # tell the plugin manager we are done
   callback()

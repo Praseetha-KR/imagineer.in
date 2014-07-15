@@ -1,29 +1,35 @@
-extends layout
+extends base
 
+block append vars
+  - bodyclass = 'project-detail'
+
+block prepend title
+  | #{ "imagineer" + " - "}
+
+block sitenav 
+  div.site-nav-icons.flushright
+    a(href='/articles/')
+      span.icon-book
+    a(href='/projects/')
+      span.icon-code
+    a(href='/creations/')
+      span.icon-feather
+block sidebar
+  div.text-center
+    img.circle(src="https://imgee.s3.amazonaws.com/imgee/8dc6b1deecef41308dc50275f59fc182_w200_h200.png")
+    div.item 
+      a(href='/articles/') ARTICLES
+    div.item 
+      a(href='/projects/') PROJECTS
+    div.item
+      a(href='/creations/') CREATIONS
+  
+
+block header
+  h1= imagineer
 block content
-  include author
-  each article in articles
-    article.article.intro
-      header
-        p.date
-          span= moment.utc(article.date).format('DD. MMMM YYYY')
-        h2
-          a(href=article.url)= article.title
-      section.content
-        if article.intro.length > 0
-          | !{ typogr(article.intro).typogrify() }
-        if article.hasMore
-          p.more
-            a(href=article.url) more
-
-block prepend footer
-  div.nav
-    if prevPage
-      a(href=prevPage.url) « Newer
-    else
-      a(href='/archive.html') « Archives
-    if nextPage
-      a(href=nextPage.url) Next page »
+  div.text-center
+    h1 coding with colors
 
 
 
